@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Riosyn — Software, carefully made.</title>
+<meta name="description" content="Riosyn is a small software studio that designs and engineers AI automation, telehealth platforms and custom web and mobile apps — from first sketch to production.">
+<meta name="theme-color" content="#F6F1E7">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono&display=swap">
+<style>
+:root{
+  --paper:#F6F1E7;--paper-2:#EFE7D8;--paper-hover:#E9DFCC;
+  --ink:#1B1915;--ink-2:#3E3932;--muted:#5E574C;--on-ink:#D8D0C2;
+  --ph-1:#E3D8C3;--ph-2:#D9CDB5;
+  --accent:#A8452B; /* design alternates: #2F5D50, #3A4A8C */
+  --mono:'Geist Mono',ui-monospace,monospace;
+  --gutter:clamp(20px, 5.6vw, 80px);
+  --header-h:72px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:var(--header-h);-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;font-family:'Geist','Helvetica Neue',sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased}
+body:has(#menu:popover-open){overflow:hidden}
+h1,h2,h3,p,figure,blockquote,ol{margin:0}
+h1,h2,h3{font-weight:600;text-wrap:balance}
+p{text-wrap:pretty}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+.wrap{width:min(100% - 2 * var(--gutter), 1280px);margin-inline:auto}
+.accent{color:var(--accent)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.tags{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--muted)}
+.section-head{display:flex;flex-direction:column;gap:16px}
+.section-head h2{font-size:clamp(40px, 34px + 1.52vw, 56px);line-height:1.03;letter-spacing:-.045em}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 30px;border-radius:999px;font-size:17px;font-weight:600;white-space:nowrap;transition:background-color .15s ease,color .15s ease}
+.btn-ink{background:var(--ink);color:var(--paper)}
+.btn-paper{background:var(--paper);color:var(--ink)}
+.ulink{font-size:17px;font-weight:500;text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
+
+/* NAV */
+.site-header{position:sticky;top:0;z-index:10;background:var(--paper)}
+.bar{height:var(--header-h);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--ink)}
+.logo{font-size:26px;font-weight:600;letter-spacing:-.04em}
+.menu-btn{width:48px;height:48px;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid var(--ink);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer}
+.menu-btn .x{display:none}
+.site-header:has(#menu:popover-open) .menu-btn .bars{display:none}
+.site-header:has(#menu:popover-open) .menu-btn .x{display:inline}
+
+/* HERO */
+.hero{display:flex;flex-direction:column;gap:32px;padding-block:40px 56px}
+.hero-top{display:flex;justify-content:space-between;gap:24px}
+.hero-top span + span{display:none}
+.hero h1{font-size:clamp(60px, 28.8px + 8vw, 144px);line-height:.98;letter-spacing:-.05em}
+.hero-foot{display:flex;flex-direction:column;gap:32px;border-top:1px solid var(--ink);padding-top:24px}
+.hero-foot p{font-size:clamp(19px, 17.9px + .29vw, 22px);line-height:1.5}
+.actions{display:flex;flex-direction:column;gap:18px}
+.actions .ulink{align-self:center;padding:12px 0}
+
+/* SERVICES */
+.services{background:var(--paper-2);padding-block:clamp(56px, 39.7px + 4.19vw, 100px)}
+.services-grid{display:flex;flex-direction:column;gap:28px}
+.service{border-top:1px solid var(--ink);padding:28px 0 32px;display:flex;flex-direction:column;gap:12px}
+.service:last-child{border-bottom:1px solid var(--ink)}
+.service .num{font-size:clamp(24px, 22.5px + .38vw, 28px);color:var(--accent)}
+.service-body{display:flex;flex-direction:column;gap:12px}
+.service h3{font-size:clamp(34px, 30.3px + .95vw, 44px);line-height:1.05}
+.service p{font-size:17px;line-height:1.6;color:var(--ink-2)}
+
+/* PULL QUOTE */
+.quote{padding-block:clamp(72px, 51.2px + 5.33vw, 128px);display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center}
+.quote blockquote{max-width:1040px}
+.quote p{font-size:clamp(30px, 23.3px + 1.71vw, 48px);font-weight:500;line-height:1.2;letter-spacing:-.03em;text-wrap:balance}
+
+/* WORK */
+.work{border-top:1px solid var(--ink);padding-block:clamp(56px, 47px + 2.29vw, 80px) 56px;display:flex;flex-direction:column;gap:32px}
+.project{display:flex;flex-direction:column;gap:16px}
+.ph{aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;background:var(--ph-1);font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted)}
+.ph.alt{background:var(--ph-2)}
+.project-meta{display:flex;flex-direction:column-reverse;gap:16px}
+.project h3{font-size:clamp(26px, 23px + .76vw, 34px);letter-spacing:-.04em}
+.project .tag{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.project p{font-size:16px;line-height:1.6;color:var(--ink-2)}
+.work > .ulink{align-self:flex-start;padding:8px 0}
+
+/* PROCESS */
+.process{border-top:1px solid var(--ink);padding-block:clamp(56px, 47px + 2.29vw, 80px);display:flex;flex-direction:column;gap:32px}
+.steps{padding:0;list-style:none;display:grid;gap:28px}
+.steps li{display:grid;grid-template-columns:56px minmax(0,1fr);gap:12px}
+.steps .num{font-size:clamp(40px, 34px + 1.52vw, 56px);line-height:1;color:var(--accent)}
+.steps li div{display:flex;flex-direction:column;gap:6px}
+.steps h3{font-size:clamp(28px, 26.5px + .38vw, 32px)}
+.steps p{font-size:16px;line-height:1.6;color:var(--ink-2)}
+
+/* CTA */
+.cta{background:var(--ink);color:var(--paper);padding-block:clamp(64px, 52px + 3.05vw, 96px)}
+.cta :focus-visible{outline-color:var(--paper)}
+.cta-grid{display:flex;flex-direction:column;gap:24px}
+.cta h2{font-size:clamp(48px, 33.1px + 3.81vw, 88px);line-height:1;letter-spacing:-.045em}
+.cta-side{display:flex;flex-direction:column;gap:24px}
+.cta-side p{font-size:17px;line-height:1.6;color:var(--on-ink)}
+.note{font-size:15px;color:var(--on-ink);text-align:center}
+.note a{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+
+/* FOOTER */
+.site-footer{padding-block:48px 40px;display:flex;flex-direction:column;gap:28px}
+.footer-top{display:flex;flex-direction:column;gap:28px}
+.site-footer nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:16px;font-weight:500}
+.site-footer nav a{padding:12px 0}
+.footer-bottom{display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--ink);padding-top:20px;font-size:14px;color:var(--muted)}
+
+/* Mobile menu: styled only while open, so browsers without popover support fall back to plain links */
+@media (width < 900px){
+  #menu:popover-open{position:fixed;inset:var(--header-h) 0 0;width:auto;height:auto;margin:0;padding:8px var(--gutter) 40px;border:0;background:var(--paper);color:var(--ink);display:flex;flex-direction:column;overflow-y:auto}
+  #menu a:not(.btn){padding:18px 0;border-bottom:1px solid var(--ink);font-size:34px;font-weight:600;letter-spacing:-.04em}
+  #menu .btn{margin-top:32px}
+}
+
+@media (width >= 640px){
+  .actions{flex-direction:row;flex-wrap:wrap;align-items:center;gap:28px}
+  .actions .ulink{padding:0}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px}
+  .steps li{display:flex;flex-direction:column}
+  .steps li div{gap:12px}
+  .cta-side{align-items:flex-start}
+  .note{text-align:left}
+}
+
+@media (width >= 900px){
+  :root{--header-h:88px}
+  .eyebrow{font-size:13px}
+  .tags{font-size:13px}
+  .section-head{gap:20px}
+
+  .logo{font-size:28px}
+  .menu-btn{display:none}
+  #menu{display:flex;align-items:center;gap:44px;position:static;inset:auto;width:auto;height:auto;margin:0;padding:0;border:0;background:none;color:inherit;overflow:visible;font-size:16px;font-weight:500}
+  #menu .btn{height:46px;padding:0 22px;font-size:16px;font-weight:500}
+
+  .hero{min-height:min(860px, calc(100svh - var(--header-h)));justify-content:space-between;gap:48px;padding-block:72px 80px}
+  .hero-top span + span{display:inline}
+  .hero h1{line-height:.96}
+  .hero-foot{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;padding-top:32px}
+  .hero-foot p{grid-column:1 / span 6}
+  .actions{grid-column:8 / -1;justify-content:flex-end}
+  .hero .btn{height:58px}
+
+  .services-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px}
+  .services .section-head{grid-column:1 / span 4}
+  .service-list{grid-column:6 / span 7}
+  .service{display:grid;grid-template-columns:72px minmax(0,1fr);gap:24px;padding:36px 0 40px}
+  .service-body{gap:14px}
+  .service p{font-size:18px}
+
+  .quote{gap:28px}
+  .quote p{line-height:1.15;letter-spacing:-.035em}
+
+  .work{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:48px;padding-block:80px 60px}
+  .work .section-head{grid-column:1 / span 8}
+  .work > .ulink{grid-row:1;grid-column:9 / -1;justify-self:end;align-self:end;padding:0}
+  .project{grid-row:2;grid-column:1 / span 7;gap:22px}
+  .project + .project{grid-column:8 / -1;padding-top:120px}
+  .ph{aspect-ratio:16/9;font-size:13px}
+  .project-meta{flex-direction:row;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px}
+  .project h3{letter-spacing:normal}
+  .project .tag{font-size:13px}
+  .project p{font-size:17px}
+
+  .process{gap:56px}
+  .steps p{font-size:17px}
+
+  .cta-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:end}
+  .cta h2{grid-column:1 / span 8;line-height:.98}
+  .cta-side{grid-column:9 / span 4}
+  .cta-side p{font-size:18px}
+  .cta .btn{height:58px}
+  .note{font-size:16px}
+
+  .site-footer{padding-block:64px 48px;gap:32px}
+  .footer-top{flex-direction:row;justify-content:space-between;align-items:flex-start}
+  .site-footer nav{display:flex;gap:32px}
+  .site-footer nav a{padding:0}
+  .footer-bottom{flex-direction:row;justify-content:space-between;padding-top:22px}
+}
+
+@media (width >= 1100px){
+  .steps{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+
+@media (hover:hover){
+  a:hover{color:var(--accent)}
+  .btn-ink:hover{background:var(--accent);color:var(--paper)}
+  .btn-paper:hover{background:var(--paper-hover);color:var(--ink)}
+  .cta a:not(.btn):hover{color:var(--paper)}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-header">
+<div class="wrap bar">
+<a href="#top" class="logo" aria-label="Riosyn home">Riosyn</a>
+<button type="button" class="menu-btn" popovertarget="menu" aria-label="Menu">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path class="bars" d="M4 8h16M4 16h16"/><path class="x" d="M6 6l12 12M18 6L6 18"/></svg>
+</button>
+<nav id="menu" popover aria-label="Main">
+<a href="#services">Services</a>
+<a href="#work">Work</a>
+<a href="#process">Process</a>
+<a href="#contact" class="btn btn-ink">Start a project</a>
+</nav>
+</div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section id="top" class="wrap hero">
+<div class="hero-top eyebrow">
+<span>A software development studio</span>
+<span>AI · Healthcare · Web &amp; Mobile</span>
+</div>
+<h1>Software, <span class="accent">carefully</span> made.</h1>
+<div class="hero-foot">
+<p>Riosyn designs and engineers AI automation, telehealth platforms and custom web and mobile apps — from first sketch to production, with one small team the whole way.</p>
+<div class="actions">
+<a href="#contact" class="btn btn-ink">Start a project</a>
+<a href="#work" class="ulink">See our work</a>
+</div>
+</div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services">
+<div class="wrap services-grid">
+<div class="section-head">
+<span class="eyebrow">§ 01 — Services</span>
+<h2>Three things, done deeply.</h2>
+</div>
+<div class="service-list">
+<article class="service">
+<span class="num">i.</span>
+<div class="service-body">
+<h3>AI &amp; automation</h3>
+<p>LLM-powered features, document and intake processing, and workflow automation that plugs into the systems you already run.</p>
+<span class="tags">AI assistants · Data extraction · Workflow automation</span>
+</div>
+</article>
+<article class="service">
+<span class="num">ii.</span>
+<div class="service-body">
+<h3>Healthcare &amp; telehealth</h3>
+<p>Practice management, virtual visits, scheduling and patient messaging — designed with privacy and security requirements in mind from day one.</p>
+<span class="tags">Virtual care · EHR integrations · SMS &amp; video</span>
+</div>
+</article>
+<article class="service">
+<span class="num">iii.</span>
+<div class="service-body">
+<h3>Web &amp; mobile apps</h3>
+<p>Custom products from MVP to scale — clean interfaces, reliable backends and cloud infrastructure your team can own after launch.</p>
+<span class="tags">Product design · iOS &amp; Android · APIs</span>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<!-- PULL QUOTE -->
+<figure class="wrap quote">
+<blockquote><p>“We stay small on purpose, so the people who scope your project are the people who build it.”</p></blockquote>
+<figcaption class="eyebrow">— Roger Rios, Founder</figcaption>
+</figure>
+
+<!-- WORK -->
+<section id="work" class="wrap work">
+<div class="section-head">
+<span class="eyebrow">§ 02 — Selected work</span>
+<h2>Recent projects</h2>
+</div>
+<article class="project">
+<div class="ph">[PROJECT IMAGE]</div>
+<div class="project-meta">
+<h3>[PROJECT TITLE]</h3>
+<span class="tag">Telehealth · [CLIENT]</span>
+</div>
+<p>[One sentence on the problem, what Riosyn built, and the measurable result.]</p>
+</article>
+<article class="project">
+<div class="ph alt">[PROJECT IMAGE]</div>
+<div class="project-meta">
+<h3>[PROJECT TITLE]</h3>
+<span class="tag">AI · [CLIENT]</span>
+</div>
+<p>[One sentence on the problem, what Riosyn built, and the measurable result.]</p>
+</article>
+<a href="#contact" class="ulink">Ask for a case study →</a>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="wrap process">
+<div class="section-head">
+<span class="eyebrow">§ 03 — Process</span>
+<h2>How a project runs</h2>
+</div>
+<ol class="steps">
+<li><span class="num">I</span><div><h3>Discover</h3><p>We map your users, workflows and constraints, then agree on what success looks like.</p></div></li>
+<li><span class="num">II</span><div><h3>Design</h3><p>Clickable prototypes and a technical plan you can react to before a line of production code.</p></div></li>
+<li><span class="num">III</span><div><h3>Build</h3><p>Short cycles with working software every sprint, so you see progress, not status reports.</p></div></li>
+<li><span class="num">IV</span><div><h3>Launch &amp; grow</h3><p>We ship, monitor and keep improving — or hand over cleanly to your in-house team.</p></div></li>
+</ol>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="cta">
+<div class="wrap cta-grid">
+<h2>Tell us what you’re building.</h2>
+<div class="cta-side">
+<p>A short call is enough to know if we’re a fit. You’ll get an honest take either way.</p>
+<a href="mailto:roger@riosyn.com" class="btn btn-paper">Book a call</a>
+<span class="note">or write to <a href="mailto:roger@riosyn.com">roger@riosyn.com</a></span>
+</div>
+</div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="wrap site-footer">
+<div class="footer-top">
+<span class="logo">Riosyn</span>
+<nav aria-label="Footer">
+<a href="#services">Services</a>
+<a href="#work">Work</a>
+<a href="#process">Process</a>
+</nav>
+</div>
+<div class="footer-bottom">
+<span>© 2026 Riosyn</span>
+<span>Working with teams worldwide</span>
+</div>
+</footer>
+
+<script>
+// Close the mobile menu once a section is picked.
+document.getElementById('menu').addEventListener('click', e => { if (e.target.closest('a')) e.currentTarget.hidePopover?.() })
+</script>
+</body>
+</html>
