@@ -78,8 +78,8 @@ a{color:inherit;text-decoration:none}
 /* WORK */
 .work{border-top:1px solid var(--ink);padding-block:clamp(56px, 47px + 2.29vw, 80px) 56px;display:flex;flex-direction:column;gap:32px}
 .project{display:flex;flex-direction:column;gap:16px}
-.ph{aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;background:var(--ph-1);font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted)}
-.ph.alt{background:var(--ph-2)}
+.ph{aspect-ratio:3/2;overflow:hidden;background:var(--ph-1)}
+.ph img{display:block;width:100%;height:100%;object-fit:cover}
 .project-meta{display:flex;flex-direction:column-reverse;gap:16px}
 .project h3{font-size:clamp(26px, 23px + .76vw, 34px);letter-spacing:-.04em}
 .project .tag{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
@@ -161,9 +161,9 @@ a{color:inherit;text-decoration:none}
   .work{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:48px;padding-block:80px 60px}
   .work .section-head{grid-column:1 / span 8}
   .work > .ulink{grid-row:1;grid-column:9 / -1;justify-self:end;align-self:end;padding:0}
-  .project{grid-row:2;grid-column:1 / span 7;gap:22px}
-  .project + .project{grid-column:8 / -1;padding-top:120px}
-  .ph{aspect-ratio:16/9;font-size:13px}
+  .project{grid-column:1 / span 7;gap:22px}
+  .project:nth-child(even of .project){grid-column:8 / -1;padding-top:120px}
+  .ph{aspect-ratio:16/9}
   .project-meta{flex-direction:row;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px}
   .project h3{letter-spacing:normal}
   .project .tag{font-size:13px}
@@ -283,20 +283,36 @@ a{color:inherit;text-decoration:none}
 <h2>Recent projects</h2>
 </div>
 <article class="project">
-<div class="ph">[PROJECT IMAGE]</div>
+<div class="ph"><img src="images/forgereel.jpg" alt="ForgeReel sign-in screen, with the line “Turn one line of text into a ready-to-post video.”" width="1440" height="900"></div>
 <div class="project-meta">
-<h3>[PROJECT TITLE]</h3>
-<span class="tag">Telehealth · [CLIENT]</span>
+<h3><a href="https://forgereel.ai" rel="noopener" target="_blank">ForgeReel</a></h3>
+<span class="tag">AI · forgereel.ai</span>
 </div>
-<p>[One sentence on the problem, what Riosyn built, and the measurable result.]</p>
+<p>Turns one line of text into a ready-to-post video — script, voiceover, footage, and subtitles generated automatically.</p>
 </article>
 <article class="project">
-<div class="ph alt">[PROJECT IMAGE]</div>
+<div class="ph"><img src="images/cannexa.jpg" alt="Cannexa homepage: a physician on a video visit, with the headline about medicinal cannabis care." width="1440" height="900"></div>
 <div class="project-meta">
-<h3>[PROJECT TITLE]</h3>
-<span class="tag">AI · [CLIENT]</span>
+<h3><a href="https://cannexa.com.br" rel="noopener" target="_blank">Cannexa</a></h3>
+<span class="tag">Telehealth · cannexa.com.br</span>
 </div>
-<p>[One sentence on the problem, what Riosyn built, and the measurable result.]</p>
+<p>Medicinal-cannabis care online across Brazil — scheduling, teleconsultations, prescriptions, and portals for patients, physicians, and partners.</p>
+</article>
+<article class="project">
+<div class="ph"><img src="images/rivers.jpg" alt="Rivers homepage hero: a cyclist at sunset under the line “Estamos simplificando o caminho para seu novo estilo de vida.”" width="748" height="431"></div>
+<div class="project-meta">
+<h3><a href="https://riversmed.com" rel="noopener" target="_blank">Rivers</a></h3>
+<span class="tag">Telehealth · riversmed.com</span>
+</div>
+<p>Fully online weight care — intake, review by a licensed physician, prescription, and medication delivered to the patient’s door.</p>
+</article>
+<article class="project">
+<div class="ph"><img src="images/voice.jpg" alt="Dispatch·AI overview: live call, call volume, and the latest calls for a home-service business." width="1440" height="900"></div>
+<div class="project-meta">
+<h3><a href="https://voice.riosyn.com" rel="noopener" target="_blank">Riosyn Voice</a></h3>
+<span class="tag">AI · voice.riosyn.com</span>
+</div>
+<p>An AI phone receptionist for home-service businesses that answers calls, captures leads, and keeps customers in one workspace.</p>
 </article>
 <a href="#contact" class="ulink">Ask for a case study →</a>
 </section>
@@ -321,8 +337,8 @@ a{color:inherit;text-decoration:none}
 <h2>Tell us what you’re building.</h2>
 <div class="cta-side">
 <p>A short call is enough to know if we’re a fit. You’ll get an honest take either way.</p>
-<a href="mailto:roger@riosyn.com" class="btn btn-paper">Book a call</a>
-<span class="note">or write to <a href="mailto:roger@riosyn.com">roger@riosyn.com</a></span>
+<a href="mailto:contact@riosyn.com" class="btn btn-paper">Book a call</a>
+<span class="note">or write to <a href="mailto:contact@riosyn.com">contact@riosyn.com</a></span>
 </div>
 </div>
 </section>
